@@ -1,4 +1,4 @@
-# <img width="127" height="51" alt="Captura de Tela 2025-11-27 às 13 12 47" src="https://github.com/user-attachments/assets/d61c7c6d-79e0-48d3-a980-1ae2e2a8fd96" />
+# <img width="127" height="51" alt="Captura de Tela 2025-11-27 às 13 12 47" src="https://github.com/user-attachments/assets/d61c7c6d-79e0-48d3-a980-1ae2e2a8fd96" />
 BEES Data Engineering - Breweries Case - Rachid
 
 The goal of this test is to assess your skills in consuming data from an API, transforming and persisting it into a data lake following the medallion architecture with three layers: raw data, curated data partitioned by location, and an analytical aggregated layer.
@@ -67,7 +67,7 @@ The goal of this test is to assess your skills in consuming data from an API, tr
    ```
     Also, we can use the Query Parameters available on the Docs
     
-    <img width="1103" height="535" alt="Captura de Tela 2025-11-27 às 13 43 47" src="https://github.com/user-attachments/assets/1268bfa7-98b2-4179-91e2-c74f1e322786" />
+    <img width="1103" height="535" alt="Captura de Tela 2025-11-27 às 13 43 47" src="https://github.com/user-attachments/assets/1268bfa7-98b2-4179-91e2-c74f1e322786" />
 
 4. Meta Data:
 
@@ -101,5 +101,7 @@ And then, run it:
     docker run -d -p 8000:8000 --name beescontainer bees-case
 
 Also, if you do not have the Docker installed in your instance, please, follow these instructions: [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/).
+
+# Orchestration
 
 
