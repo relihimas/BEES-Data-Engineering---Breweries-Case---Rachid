@@ -3,7 +3,21 @@ BEES Data Engineering - Breweries Case - Rachid
 
 The goal of this test is to assess your skills in consuming data from an API, transforming and persisting it into a data lake following the medallion architecture with three layers: raw data, curated data partitioned by location, and an analytical aggregated layer.
 
-![image]
+📊 Project Status
+
+Status: Active
+
+Last Dataset Update: 
+
+Maintenance: Actively maintained by owner
+
+Dataset Size: 8,000+ breweries
+
+
+🔧 Requirements
+
+- Python v
+- Docker v
 
 # Features
 - Breweries Data: Using the Open Brewery DB API to fetch data, listing breweries companies: [Open Brewery DB](https://www.openbrewerydb.org/).
@@ -14,7 +28,17 @@ The goal of this test is to assess your skills in consuming data from an API, tr
 
 ## Breweries Data:
 
-1. Fetch Data from the [API List Breweries](https://www.openbrewerydb.org/documentation#list-breweries)
+1. Main Goal:
+   Fetch Data from the [API List Breweries](https://www.openbrewerydb.org/documentation#list-breweries)
+
+2. Logic:
+
+   a. The code will extract from the MetaData API the total amount of Breweries;
+   b. The code will use this total amount of Breweries as variable to determinate the amount of pages for the API List Breweries;
+   c. The code will run the API List Breweries and extract from each page a total of 200 Breweries;
+   d. 
+
+
 
    The data consists in a list of JSON items with the following body:
 
@@ -45,7 +69,7 @@ The goal of this test is to assess your skills in consuming data from an API, tr
     <img width="1103" height="535" alt="Captura de Tela 2025-11-27 às 13 43 47" src="https://github.com/user-attachments/assets/1268bfa7-98b2-4179-91e2-c74f1e322786" />
 
 
-3. 
+5. 
 
 
 # Walktrough
