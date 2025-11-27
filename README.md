@@ -75,7 +75,7 @@ The goal of this test is to assess your skills in consuming data from an API, tr
 
    ```json
    {
-      "file_name": "bees_listbreweries_20251127_145352.json"
+      "file_name": "bees_listbreweries_20251127_145352.json",
       "total_amount_breweries": 9.038,
       "source_endpoint": "https://api.openbrewerydb.org/v1/breweries",
       "source_query": "page=46&per_page=200",
