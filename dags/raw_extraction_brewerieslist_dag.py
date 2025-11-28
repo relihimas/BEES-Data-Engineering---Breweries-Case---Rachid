@@ -6,15 +6,15 @@ import requests
 import math
 import json
 import uuid_utils as uuid
+import os
 import constants as cst
 
-# Função original adaptada
 def raw_extraction():
     """
     Fetch data from the Open Brewery DB API and return a JSON-like dict containing both metadata and the raw payload.
     """
     lst_breweries = []
-    file_name = f"/opt/airflow/data/bees_listbreweries_{datetime.now().date()}.json"
+    file_name = f"bees_listbreweries_{datetime.now().date()}.json"
 
     try:
         response_metadata = requests.get(cst.url_metadata)
@@ -59,17 +59,17 @@ def raw_extraction():
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,
-    "email_on_failure": False,
+    "email_on_failure": True,
     "email_on_retry": False,
     "retries": 1,
     "retry_delay": timedelta(minutes=5),
 }
 
 with DAG(
-    dag_id="brewery_extraction_dag",
+    dag_id="raw_brewery_extraction_dag",
     default_args=default_args,
     description="DAG para extrair dados da Open Brewery DB",
-    schedule_interval="@daily",  # Executa diariamente
+    schedule="@weekly", 
     start_date=datetime(2025, 11, 27),
     catchup=False,
     tags=["brewery", "raw"],
