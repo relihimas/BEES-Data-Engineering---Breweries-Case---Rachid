@@ -1,6 +1,8 @@
 # <img width="127" height="51" alt="Captura de Tela 2025-11-27 às 13 12 47" src="https://github.com/user-attachments/assets/d61c7c6d-79e0-48d3-a980-1ae2e2a8fd96" />
 BEES Data Engineering - Breweries Case - Rachid
 
+<img width="1448" height="593" alt="v1" src="https://github.com/user-attachments/assets/da4e0768-cf1b-40b9-9d92-a0f742bace05" />
+
 The goal of this test is to assess your skills in consuming data from an API, transforming and persisting it into a data lake following the medallion architecture with three layers: raw data, curated data partitioned by location, and an analytical aggregated layer.
 
 # 📊 Project Status
