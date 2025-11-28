@@ -8,20 +8,20 @@ The goal of this test is to assess your skills in consuming data from an API, tr
 # 📊 Project Status
 
 - Status: Active
-- Last Dataset Update:
-- Maintenance: Actively maintained by owner
-- Dataset Size: 8,000+ breweries
+- Maintenance: Actively maintained by Rachid Elihimas
+- Dataset Size: 9,000+ breweries
 
 # 🔧 Requirements
 
-- Python v or higher
-- Docker v or higher
+- Linux
 
 # Features
 - Breweries Data: Using the Open Brewery DB API to fetch data, listing breweries companies: [Open Brewery DB](https://www.openbrewerydb.org/).
-- Docker Support: Easily deployable using Docker.
+- Docker: Using Docker Composo with other Dockerfiles for support.
 - Orchestration: This project will use Airflow v3.1.3.
-- DataLake Architecture: Data will follow the Medallion Architecture.
+- Database: Postgres SQL (already provided by Airflow)
+- Programming Language: Python (with PySpark)
+- DataLake Architecture: Medallion Architecture.
 - Monitoring/Alerts: 
 
 ## Breweries Data:
@@ -93,16 +93,10 @@ The goal of this test is to assess your skills in consuming data from an API, tr
 > [!WARNING]
 Deploy this application into a **Linux** Operational System.
 
-First, start the application by building the image:
-
-    docker build -t bees-case .
-
-And then, run it:
-
-    docker run -d -p 8000:8000 --name beescontainer bees-case
-
 Also, if you do not have the Docker installed in your instance, please, follow these instructions: [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/).
 
-# Orchestration
+# Airflow Orchestration
+# Spark / PySpark
+# Postgres SQL
 
 
