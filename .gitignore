@@ -4,3 +4,6 @@ pyvenv.cfg
 /Include/
 /Lib/
 /Scripts/
+/raw_data/
+bees_listbreweries_*.json
+share\py4j

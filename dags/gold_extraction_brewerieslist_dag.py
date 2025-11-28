@@ -1,0 +1,1 @@
+#Gold Layer: Create an aggregated view with the quantity of breweries per type and location.
