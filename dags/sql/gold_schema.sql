@@ -21,5 +21,5 @@ CREATE TABLE IF NOT EXISTS gold_breweries (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_breweries_name ON bronze_breweries (name);
-CREATE INDEX idx_breweries_type ON bronze_breweries (brewery_type);
+CREATE INDEX idx_breweries_name ON gold_breweries (name);
+CREATE INDEX idx_breweries_type ON gold_breweries (brewery_type);
