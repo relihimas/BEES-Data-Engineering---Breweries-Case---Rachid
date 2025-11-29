@@ -1,8 +1,4 @@
-CREATE DATABASE beesdatabase;
-
-\c beesdatabase;
-
-CREATE TABLE bronze_breweries (
+CREATE TABLE IF NOT EXISTS gold_breweries (
 
     id VARCHAR(36) PRIMARY KEY NOT NULL,
     name VARCHAR(255) NOT NULL,

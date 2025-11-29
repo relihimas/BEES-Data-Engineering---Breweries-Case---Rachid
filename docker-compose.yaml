@@ -1,6 +1,10 @@
 name: bees-rachid
 version: '1.0'
 
+networks:
+  airflow:
+    driver: bridge
+
 x-airflow-common:
   &airflow-common
 
@@ -37,6 +41,8 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
+    - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/airflow/data/rawdata
+    - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/airflow/data/silver
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -52,9 +58,10 @@ services:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
+    ports:
+      -"5432:5432"
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
-      - ./beesdatabase.sql:/docker-entrypoint-initdb.d/beesdatabase.sql
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s
@@ -287,7 +294,7 @@ services:
         condition: service_completed_successfully
 
   spark-master:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile.airflow
     environment:
@@ -301,18 +308,16 @@ services:
       - "8081:8081"
       - "7077:7077"
     volumes:
-      - spark-data:/bitnami
       - ./include:/usr/local/airflow/include
       - ./apps:/opt/spark-apps
       - ./data:/opt/spark-data
     networks:
-      - bees-rachid_default
       - airflow
 
   spark-worker:
-    build: 
+    build:
       context: .
-      dockerfile: Dockerfile.airflow    
+      dockerfile: Dockerfile.airflow
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark-master:7077
@@ -324,15 +329,12 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./include:/usr/local/airflow/include
-      - spark-data:/bitnami
       - ./apps:/opt/spark-apps
       - ./data:/opt/spark-data
     depends_on:
       - spark-master
     networks:
-      - bees-rachid_default
       - airflow
-
 
 volumes:
   postgres-db-volume:

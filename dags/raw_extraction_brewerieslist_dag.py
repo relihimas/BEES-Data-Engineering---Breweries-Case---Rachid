@@ -1,12 +1,11 @@
-
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from datetime import datetime, timedelta
 import requests
 import math
 import json
 import uuid_utils as uuid
-import os
 import constants as cst
 
 def raw_extraction():
@@ -46,10 +45,10 @@ def raw_extraction():
             "body": lst_breweries
         }
 
-        with open(file_name, "w", encoding="utf-8") as f:
+        with open(f"{cst.savefilepathraw}/{file_name}", "w", encoding="utf-8") as f:
             json.dump(rawjson, f, ensure_ascii=False, indent=2)
 
-        return f"Arquivo salvo em {file_name}"
+        return True
 
     except Exception as e:
         return str(e)
@@ -68,13 +67,21 @@ default_args = {
 with DAG(
     dag_id="raw_brewery_extraction_dag",
     default_args=default_args,
-    description="DAG para extrair dados da Open Brewery DB",
+    description="DAG for extract data from the Open Brewery DB API",
     schedule="@weekly", 
-    start_date=datetime(2025, 11, 27),
+    start_date=datetime(2025, 11, 28),
     catchup=False,
     tags=["brewery", "raw"],
 ) as dag:
-    extract_task = PythonOperator(
+    raw_extract_breweries = PythonOperator(
         task_id="raw_extract_breweries",
         python_callable=raw_extraction
     )
+
+    disparar_downstream_bronze = TriggerDagRunOperator(
+        task_id="bronze_extraction_brewerieslist_dag",
+        trigger_dag_id="bronze_brewery_extraction_dag",
+        trigger_rule="all_success"
+    )
+
+    raw_extract_breweries >> disparar_downstream_bronze
